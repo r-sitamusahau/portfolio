@@ -267,6 +267,134 @@
     </div>
 </section>
 
+<!-- Testimonials Section -->
+<section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center text-cyan-400">What People Say</h2>
+        <div class="relative">
+            <!-- Testimonials Container -->
+            <div id="testimonials-container" class="overflow-hidden">
+                <div id="testimonials-slider" class="flex transition-transform duration-500">
+                    <!-- Testimonial 1 -->
+                    <div class="min-w-full px-4">
+                        <div class="bg-slate-800/50 p-8 rounded-xl">
+                            <p class="text-gray-300 mb-6 text-lg italic">"Working with r-sitamusahau was transformative for our project. Their expertise in cryptography and innovative approach to problem-solving helped us implement a secure and scalable solution that exceeded our expectations."</p>
+                            <div class="flex items-center">
+                                <img src="assets/Screenshot 2025-02-05 114009.png" alt="Sarah Chen" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold">Sarah Chen</h4>
+                                    <p class="text-cyan-400">CTO at TechForward</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="min-w-full px-4">
+                        <div class="bg-slate-800/50 p-8 rounded-xl">
+                            <p class="text-gray-300 mb-6 text-lg italic">"Their deep understanding of both theoretical and practical aspects of quantum cryptography helped us future-proof our blockchain infrastructure. A true expert in their field!"</p>
+                            <div class="flex items-center">
+                                <img src="assets/Screenshot 2025-02-05 114009.png" alt="Marcus Rodriguez" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold">Marcus Rodriguez</h4>
+                                    <p class="text-cyan-400">Lead Developer at CryptoSecure</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="min-w-full px-4">
+                        <div class="bg-slate-800/50 p-8 rounded-xl">
+                            <p class="text-gray-300 mb-6 text-lg italic">"The educational platform they developed revolutionized how we teach cryptography concepts. Their ability to make complex topics accessible is remarkable."</p>
+                            <div class="flex items-center">
+                                <img src="assets/Screenshot 2025-02-05 113938.png" alt="Dr. Emily Thompson" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold">Dr. Emily Thompson</h4>
+                                    <p class="text-cyan-400">Professor of Computer Science</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 4 -->
+                    <div class="min-w-full px-4">
+                        <div class="bg-slate-800/50 p-8 rounded-xl">
+                            <p class="text-gray-300 mb-6 text-lg italic">"Their contribution to our AI security protocol was invaluable. They brought a unique perspective that combined cutting-edge technology with practical implementation."</p>
+                            <div class="flex items-center">
+                                <img src="assets/image.png" alt="James Wilson" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold">James Wilson</h4>
+                                    <p class="text-cyan-400">AI Security Architect</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button id="prev-testimonial" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-cyan-500/20 p-2 rounded-full hover:bg-cyan-500/40 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button id="next-testimonial" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-cyan-500/20 p-2 rounded-full hover:bg-cyan-500/40 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+            <!-- Dots Navigation -->
+            <div class="flex justify-center mt-6 space-x-2">
+                <button class="w-3 h-3 rounded-full bg-cyan-500 testimonial-dot" data-index="0"></button>
+                <button class="w-3 h-3 rounded-full bg-cyan-500/20 testimonial-dot" data-index="1"></button>
+                <button class="w-3 h-3 rounded-full bg-cyan-500/20 testimonial-dot" data-index="2"></button>
+                <button class="w-3 h-3 rounded-full bg-cyan-500/20 testimonial-dot" data-index="3"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this script before the closing body tag -->
+<script>
+    // Testimonials Carousel
+    const slider = document.getElementById('testimonials-slider');
+    const prevButton = document.getElementById('prev-testimonial');
+    const nextButton = document.getElementById('next-testimonial');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    let currentIndex = 0;
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('bg-cyan-500', index === currentIndex);
+            dot.classList.toggle('bg-cyan-500/20', index !== currentIndex);
+        });
+    }
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + 4) % 4;
+        updateSlider();
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % 4;
+        updateSlider();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlider();
+        });
+    });
+
+    // Auto-advance every 5 seconds
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % 4;
+        updateSlider();
+    }, 5000);
+</script>
+
 <!-- Countdown Timer Section -->
 <section class="py-16 bg-slate-900/50">
     <div class="max-w-6xl mx-auto px-4">
